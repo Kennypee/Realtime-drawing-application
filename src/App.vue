@@ -1,28 +1,46 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+   <div class="top-nav">
+      <button v-on:click="undo" id="undo-btn">Undo</button>
+      <button v-on:click="clear" id="clear-btn">Clear</button>
+      <input type="color" id="color-picker">
+      <input type="range" id="brush-size" min="1" max="50" value="10">
+    </div>
+    <canvas v-canvas id="paint"></canvas>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import canvas from '../src/canvas.js';
 
 export default {
   name: 'app',
-  components: {
-    HelloWorld
+  directives: {
+    canvas,
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+body {
+    margin: 0;
+}
+
+.top-nav {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(248, 232, 4);
+    border: 2px solid black;
+    position: absolute;
+    width: 100%;
+}
+
+.top-nav * {
+    margin: 5px 10px;
+}
+
+#paint {
+    display: block;
 }
 </style>
